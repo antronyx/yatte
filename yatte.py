@@ -1,10 +1,12 @@
 # YATTE
 # Yet Another Truth Table Elaborator
 
+import readline
+
 n=int(input("Insert number of variables\n"))
-
+readline.read_history_file('.yatte_history')
 stringin=input("Insert Expression\n")
-
+readline.append_history_file(1,'.yatte_history')
 
 max_num=2**n
 lst = ["{:0{}b}".format(x, n) for x in range(2**n)]
@@ -40,6 +42,7 @@ while(i<max_num):
     except:
         pass
     fun_out=eval(stringin)
+    
     if(fun_out):
         minterms.append(i)
     else:
