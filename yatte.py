@@ -7,12 +7,15 @@ n=int(input("Insert number of variables\n"))
 readline.read_history_file('.yatte_history')
 stringin=input("Insert Expression\n")
 readline.append_history_file(1,'.yatte_history')
+#Convert +, * to and, or
+stringin=stringin.replace('+',' or ')
+stringin=stringin.replace('*', ' and ')
 
 max_num=2**n
 lst = ["{:0{}b}".format(x, n) for x in range(2**n)]
 i=0
 minterms=[]
-maxterms=[]
+
 
 
 print()
@@ -45,15 +48,11 @@ while(i<max_num):
     
     if(fun_out):
         minterms.append(i)
-    else:
-        maxterms.append(i)
     print("------------------------")
     print("|%s\t|%s\t|%s\t|" %(i, lst[i], fun_out))
     i=i+1
 print("------------------------")
 print()
-print("Those are the function's minterms (SumOfProducts):")
+print("Those are the function's minterms [f=Σ m(...)]:")
 print(minterms)
 
-print("Those are the function's maxterms (ProductOfSums):")
-print(maxterms)
